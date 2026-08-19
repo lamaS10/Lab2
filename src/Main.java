@@ -178,6 +178,13 @@ public class Main {
             System.out.println("Password is weak");
         }
 
+        //q8
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.print("Enter the number of Fibonacci terms to generate: ");
+        int numbeer = input.nextInt();
+
+        generateFibonacci(numbeer);
+
 
 
 
@@ -243,6 +250,20 @@ public class Main {
             return 3;
         }
         return 0;
+    }
+
+    //generateFibonacci method
+    public static void generateFibonacci(int number) {
+        int firstNumber=0;
+        int secondNumber=1;
+
+        for (int i = 0; i < number; i++) {
+            System.out.print(firstNumber);
+
+            int nextNumber= firstNumber+secondNumber;
+            firstNumber=secondNumber;
+            secondNumber=nextNumber;
+        }
     }
 }
 
