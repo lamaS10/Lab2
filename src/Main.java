@@ -150,6 +150,8 @@ public class Main {
         }while (choice!=5);
 
         //Q6
+        System.out.println("----------------------------------------------------------------------------");
+
         System.out.print("Enter min number: ");
         int min = input.nextInt();
 
@@ -160,6 +162,21 @@ public class Main {
         int countRandom = input.nextInt();
 
         generateRandomNumber(min, max, countRandom);
+
+        //Q7
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.print("Enter a password: ");
+        String password = input.nextLine();
+
+        int totalScore =checkLength(password)+checkSpecialCharacters(password)+checkUpperCaseLowerCase(password);
+
+        if (totalScore >= 8) {
+            System.out.println("Password is strong");
+        } else if (totalScore >= 5) {
+            System.out.println("Password is moderately strong");
+        } else {
+            System.out.println("Password is weak");
+        }
 
 
 
@@ -179,12 +196,53 @@ public class Main {
         }
     }
 
+    //generate Random Number
     public static void generateRandomNumber(int min,int max,int countNumber){
         Random random = new Random();
         for (int i = 0; i < countNumber; i++) {
             int randomNumber = random.nextInt(max - min + 1) + min;
             System.out.println((i+1)+" random number is: "+randomNumber);
         }
+    }
+    //check lenght of password
+    public static int checkLength(String password) {
+
+        if (password.length() >= 8) {
+            return 3;
+        } else if (password.length() >= 6) {
+            return 2;
+        } else {
+            return 0;
+        }
+    }
+
+    public static int checkSpecialCharacters(String password) {
+
+        for (int i = 0; i < password.length(); i++) {
+            if (!Character.isLetterOrDigit(password.charAt(i))) {
+                return 2;
+            }
+        }
+        return 0;
+    }
+
+    public static int checkUpperCaseLowerCase(String password) {
+
+        boolean hasUpper = false;
+        boolean hasLower = false;
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isUpperCase(password.charAt(i))) {
+                hasUpper = true;
+            }
+            if (Character.isLowerCase(password.charAt(i))) {
+                hasLower = true;
+            }
+        }
+
+        if (hasUpper && hasLower) {
+            return 3;
+        }
+        return 0;
     }
 }
 
